@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Notes from './state-notes/notes';
+import NotesList from './state-notes/notes-lists';
+import { createStore } from 'redux';
+import { NotesReducer } from './redux/reducer';
+import {Provider} from 'react-redux';
+
+const store = createStore(NotesReducer)
 
 function App() {
+  const [notes=[], setNotes=[]] = useState([]);
+
   return (
+    <Provider store={store}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Notes setNotes={setNotes}/>
+      <NotesList notes={notes} setNotes={setNotes}/>
     </div>
+    </Provider>
+
   );
 }
 
