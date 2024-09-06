@@ -1,11 +1,11 @@
 import React from 'react'
 import './styles.css'
 import { deleteNote } from '../redux/actions'
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 // import { isEmpty } from 'lodash';
 
 const NotesList = ({ notes = [], setNotes = () => { } }) => {
-    const notesState=useSelector(state=>state.notes)
+    // const notesState=useSelector(state=>state.notes)
     const dispatch=useDispatch();
     const onClickRemove = (id) => {
     dispatch(deleteNote(id))
@@ -18,7 +18,7 @@ const NotesList = ({ notes = [], setNotes = () => { } }) => {
     return (
         <div className='main-div'>
             <p>List</p>
-            {notesState.map((item) => {
+            {this.props.notes.map((item) => {
                 return <div key={item.id} className='list-view'>
                     <p>{item.note}</p>
                     <button onClick={() => onClickRemove(item.id)} className='button-div'>Remove</button>
@@ -28,5 +28,7 @@ const NotesList = ({ notes = [], setNotes = () => { } }) => {
 
     )
 }
-
-export default NotesList
+const mapStateToProps=(state)=>{
+    return {notes:state.notes,}
+};
+export default connect(mapStateToProps)(NotesList)
