@@ -1,10 +1,10 @@
 
 import React, { useRef } from 'react'
 import './styles.css'
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addNote } from '../redux/actions';
-const Notes = ({setNotes=()=>{}}) => {
+const Notes = () => {
   const inputRef=useRef();
   const dispatch=useDispatch();
   const onClickAdd=(e)=>{
@@ -20,7 +20,7 @@ const Notes = ({setNotes=()=>{}}) => {
     <div className='main-div'>
         <form onSubmit={onClickAdd}>
        Add note: <input name="" id='noteInput'  ref={inputRef} />
-      <button type="submit" className='button-div'>Add Note</button>
+      <button type="submit" className='button-div'>+ Add Note</button>
         </form>
     </div>
   )
