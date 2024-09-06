@@ -3,7 +3,8 @@ import React, { useRef } from 'react'
 import './styles.css'
 // import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { addNote } from '../redux/actions';
+import { addNote } from '../redux/toolkit';
+// import { addNote } from '../redux/actions';
 const Notes = () => {
   const inputRef=useRef();
   const dispatch=useDispatch();

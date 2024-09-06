@@ -1,31 +1,23 @@
-import {createSlice,PayloadAction} from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
-import { isEmpty } from 'lodash';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-value: 0,
-}
+  notes: [],
+};
 
-const counterSlice=createSlice({
-    name:'',
-    initialState,
-    reducers:{
-        addNote: (state,action)=> {
-            const note = {
-                note: action.payload,
-                id: uuidv4(),
-            }
-            state.notes= [...state.notes, note]
-        },
-        deleteNote: (state,action)=> {
-            const findNote = state.notes.find(i => i.id === action.payload);
-            if (!isEmpty(findNote)) {
-                const filteredNotes = state.notes.filter(i => i.id !== action.payload);
-                state.notes= filteredNotes
-            }else return state;
-        }
-    }
+const todoSlice = createSlice({
+  name: "notes",
+  initialState,
+  reducers: {
+    addNote: (state, action) => {
+        state.notes.push({ id: Date.now(), note: action.payload });
+        console.log('here',state.notes)
+    },
+    deleteNote: (state, action) => {
+      state.notes = state.notes.filter((task) => task.id !== action.payload);
+    },
+  },
 });
 
-export const {addNote,deleteNode}=counterSlice.actions;
-export default counterSlice.reducer;
+export const { addNote, deleteNote } = todoSlice.actions;
+
+export default todoSlice.reducer;
