@@ -2,6 +2,8 @@ import React from 'react'
 import './styles.css'
 const NotesList = ({ notes = [], setNotes = () => { } }) => {
     const onClickRemove = (id) => {
+        const filterNotes=notes.filter(n=>n.id!==id);
+        setNotes(filterNotes)
     }
     return (
         <div className='main-div'>
