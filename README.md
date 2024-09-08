@@ -72,7 +72,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 npx create-next-app@latest
-npm i uuid
-npm install lodash
 npm install @reduxjs/toolkit react-redux
-npm install axios       

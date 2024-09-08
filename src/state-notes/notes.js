@@ -1,15 +1,21 @@
 
 import React, { useRef } from 'react'
 import './styles.css'
+import { useDispatch } from 'react-redux';
+import { addNote } from '../redux-toolkit/reducer';
+// import { setAddNotes } from '../redux/actions';
 
-const Notes = ({setNotes=()=>{}}) => {
+const Notes = () => {
   const inputRef=useRef();
+  const dispatch=useDispatch();
+
   const onClickAdd=(e)=>{
     e.preventDefault();
-    setNotes(prev=>[...prev,{
-      id:new Date(),
-      note:inputRef.current.value
-    }])
+    dispatch(addNote(inputRef.current.value));
+    // setNotes(prev=>[...prev,{
+    //   id:new Date(),
+    //   note:inputRef.current.value
+    // }])
   }
   return (
     <div className='main-div'>

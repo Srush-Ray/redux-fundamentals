@@ -1,14 +1,20 @@
 import React from 'react'
 import './styles.css'
-const NotesList = ({ notes = [], setNotes = () => { } }) => {
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteNote } from '../redux-toolkit/reducer';
+// import { deleteNote } from '../redux/actions';
+const NotesList = () => {
+    const notesList=useSelector(state=>state.notes);
+    const dispatch=useDispatch();
     const onClickRemove = (id) => {
-        const filterNotes=notes.filter(n=>n.id!==id);
-        setNotes(filterNotes)
+        dispatch(deleteNote(id));
+        // const filterNotes=notes.filter(n=>n.id!==id);
+        // setNotes(filterNotes)
     }
     return (
         <div className='main-div'>
             <p>My Notes</p>
-            {notes?.map((item) => {
+            {notesList?.map((item) => {
                 return <div key={item.id} className='list-view'>
                     <p>{item.note}</p>
                     <button onClick={() => onClickRemove(item.id)} className='button-div'>Delete</button>
